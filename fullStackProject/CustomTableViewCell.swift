@@ -17,14 +17,12 @@ class CustomTableViewCell: UITableViewCell {
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        titleLabel.text = "Sample item"
+        titleLabel.font = UIFont.boldSystemFont(ofSize: 20.0)
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
     
-        descLabel.text = "Beavers are second only to humans in their ability to manipulate and change their environment. They can measure up to 1.3 metres long. A group of beavers is called a colony"
         descLabel.translatesAutoresizingMaskIntoConstraints = false
         descLabel.numberOfLines = 0
         
-        jsonImage.image = UIImage(named: "apple   ")
         jsonImage.translatesAutoresizingMaskIntoConstraints = false
         
         viewDictionaries = ["title": titleLabel, "description": descLabel, "image": jsonImage]
@@ -35,23 +33,23 @@ class CustomTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        titleLabel.text = nil
+        descLabel.text = nil
+        jsonImage.image = nil
+    }
+    
     func setupViews() {
         addSubview(titleLabel)
         addSubview(descLabel)
         addSubview(jsonImage)
-        
+        //Using VFL
        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-[title]-|", options:  [], metrics: nil, views: viewDictionaries))
-       addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-[description]-|", options:  [], metrics: nil, views: viewDictionaries))
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-[image(30)]-|", options:  [], metrics: nil, views: viewDictionaries))
-        
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-20-[title]-20-[description]-20-[image(30)]-20-|", options:  [], metrics: nil, views: viewDictionaries))
+       addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-[description]-20-[image(50)]-|", options:  .alignAllBottom, metrics: nil, views: viewDictionaries))
+
+        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-20-[title]-20-[description]-20-[image(50)]-|", options:  [], metrics: nil, views: viewDictionaries))
         
     }
-    
-//    override func layoutSubviews() {
-//        super.layoutSubviews()
-//        titleLabel.preferredMaxLayoutWidth = titleLabel.frame.width
-//        descLabel.preferredMaxLayoutWidth = descLabel.frame.width
-//    }
 
 }
