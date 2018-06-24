@@ -11,8 +11,6 @@ import Alamofire
 
 class MyViewController: UITableViewController {
     
-    var titleString: String?
-    
     var myActivityIndicator: UIActivityIndicatorView?
     var countryData: CountryInfo?
     
