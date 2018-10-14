@@ -10,7 +10,7 @@ import UIKit
 import Alamofire
 
 class MyViewController: UITableViewController {
-    
+
     var myActivityIndicator: UIActivityIndicatorView?
     var countryData: CountryInfo?
     
@@ -41,7 +41,7 @@ class MyViewController: UITableViewController {
         tableView.addSubview(myActivityIndicator!)
     }
     
-    private func setupTableView() {
+    internal func setupTableView() {
         //register cell
         tableView.register(CustomTableViewCell.self, forCellReuseIdentifier: "dataIdentifier")
         
@@ -124,6 +124,8 @@ class MyViewController: UITableViewController {
     }  
     
 }
+
+
 
 
 //Get Image
